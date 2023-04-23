@@ -14,9 +14,9 @@ app.get('/', (req, res) => {
 
 //Breads
 const breadsController = require('./controllers/breads_controller.js');
-app.use('/breads', breadsController)
+app.use('/breads', breadsController);
 
 //LISTEN
 app.listen(PORT, () => {
-    console.log('Server is listing on', PORT)
-})
+    console.log('Server is listing on', PORT);
+});
