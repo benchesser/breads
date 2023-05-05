@@ -10,7 +10,7 @@ const Edit = ({ bread }) => {
                 <input type='text' name='name' id='name' required defaultValue={bread.name} />
 
                 <label htmlFor='image'>Image</label>
-                <input type='text' name='image' id='image' defaultValue={bread.image}/>
+                <input type='text' name='image' id='image' defaultValue={bread.image} />
 
                 <label htmlFor='hasGluten'>Has Gluten</label>
                 <input type='checkbox' name='hasGluten' id='hasGluten' defaultChecked={bread.hasGluten} />

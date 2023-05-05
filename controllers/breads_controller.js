@@ -47,6 +47,7 @@ breads.get('/:id', (req, res) => {
     const id = req.params.id;
     Bread.findById(id)
         .then((foundBread) => {
+            
             res.render('show', {
             bread: foundBread,
             });
