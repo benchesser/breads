@@ -17,6 +17,7 @@ const Show = ({ bread }) => {
                 have gluten.
             </p>
             <img width="480" src={bread.image} alt={bread.name} />
+            <p>Baked with love by {bread.baker}</p>
             <li>
                 <a href='/breads'>Go home</a>
             </li>
