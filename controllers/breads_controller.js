@@ -38,9 +38,12 @@ breads.get('/new', (req, res) => {
 breads.get('/:id/edit', (req, res) => {
     const id = req.params.id;
 
-    Bread.findById(id).then(foundBread => {
-        res.render('edit', {
-            bread: foundBread,
+    Baker.find().then((foundBakers) => {
+        Bread.findById(id).then(foundBread => {
+            res.render('edit', {
+                bread: foundBread,
+                bakers: foundBakers,
+            });
         });
     });
 });
@@ -49,6 +52,7 @@ breads.get('/:id/edit', (req, res) => {
 breads.get('/:id', (req, res) => {
     const id = req.params.id;
     Bread.findById(id)
+        .populate('baker')
         .then((foundBread) => {
             
             res.render('show', {
