@@ -5,10 +5,14 @@ const Baker = require('../models/baker.js');
 
 //INDEX - READ ALL
 breads.get('/', (req,res) => {
-    Bread.find().then((foundBreads) => {
-        res.render('index', {
-            breads: foundBreads,
-            title: 'Index page',
+    Baker.find()
+    .then(foundBakers => {
+        Bread.find().then((foundBreads) => {
+            res.render('index', {
+                breads: foundBreads,
+                bakers: foundBakers,
+                title: 'Index page',
+            });
         });
     });
 });
@@ -48,21 +52,27 @@ breads.get('/:id/edit', (req, res) => {
     });
 });
 
-//READ ONE -- SHOW
-breads.get('/:id', (req, res) => {
+
+// READ ONE - SHOW
+breads.get("/:id", (req, res) => {
     const id = req.params.id;
     Bread.findById(id)
-        .populate('baker')
+        .populate("baker")
         .then((foundBread) => {
-            
-            res.render('show', {
-            bread: foundBread,
-            });
+            if (foundBread === null) {
+                res.send("404 - Bread not found");
+            } else {
+                console.log(foundBread.getBakedBy());
+                res.render("show", {
+                    bread: foundBread,
+                });
+            }
         })
         .catch((err) => {
-        res.send('404');
+            res.send("500 - Server Error");
         });
 });
+
 
 //CREATE
 breads.post('/', (req, res) => {
