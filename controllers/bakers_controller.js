@@ -14,11 +14,14 @@ bakers.get('/data/seed', (req, res) => {
 //INDEX -- READ ALL
 bakers.get('/', (req, res) => {
     Baker.find()
-    .populate('breads')
+    .populate({
+        path: 'breads',
+        options: { limit: 2},
+    })
     .then((foundBakers) => {
         res.send(foundBakers);
     });
-})
+});
 
 // DETIAL - Show
 bakers.get('/:id', (req, res) => {
